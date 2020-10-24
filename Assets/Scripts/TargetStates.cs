@@ -13,33 +13,50 @@ public class TargetStates : MonoBehaviour
     public Color State2;
     Material material; 
 
-    AudioSource source;
+    AudioSource sound;
 
-    IEnumerator Coroutine()
-    {
-        yield return new WaitForSeconds(0.5f);
-    }
-
-    void Start()
+    void Awake()
     {
         material = GetComponent<MeshRenderer>().material;
+        sound = GetComponent<AudioSource>();
     }
 
-    void OnTriggerEnter(Collider other) 
+    
+    IEnumerator Coroutine()
+    {
+        yield return new WaitForSeconds(5.0f);
+        // Destroy(gameObject);
+    }
+
+    void OnCollisionEnter(Collision other) 
     {
         material.color = State1;
+        sound.Play();
+        Debug.Log("Successfully hit target!");
         StartCoroutine(Coroutine());
-        if (other.gameObject.name == "Target")
-        {
-            Destroy(other.gameObject);
-        }
-   
+        //Destroy(gameObject);
+        
     }
 
-    void OnTriggerExit(Collider other) 
-    {
-        StopAllCoroutines();   
-    }
+
+
+    // void OnTriggerEnter(Collider other) 
+    // {
+    //     material.color = State1;
+    //     source.Play();
+
+    //     StartCoroutine(Coroutine());
+    //     if (other.gameObject.name == "Target")
+    //     {
+    //         Destroy(other.gameObject);
+    //     }
+   
+    // }
+
+    // void OnTriggerExit(Collider other) 
+    // {
+    //     StopAllCoroutines();   
+    // }
 
   
 }
