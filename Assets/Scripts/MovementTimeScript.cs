@@ -6,9 +6,6 @@ using UnityEngine;
 public class MovementTimeScript : MonoBehaviour
 {
 
-    // I'm being lazy and putting Audio here for now TODO change into its own script
-    AudioSource source;
-
     // set up Time tracking 
     public static float time;
 
@@ -33,11 +30,6 @@ public class MovementTimeScript : MonoBehaviour
         targetCollision = Time.time;
         Debug.Log("Movement Time Ended");
         //collisionTimes.Add(startPointCollision);
-        source = GetComponent<AudioSource>();
-        if (other.gameObject.name == "Target")
-        {
-            Destroy(other.gameObject);
-        }
         
     }
 
